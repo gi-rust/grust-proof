@@ -1,0 +1,13 @@
+[package]
+
+name = "grust-proof"
+version = "0.0.1-dev"
+authors = ["Mikhail Zabaluev <mikhail.zabaluev@gmail.com"]
+license = "LGPL-2.1+"
+readme = "README.md"
+
+[dependencies.grust]
+git = "https://github.com/gi-rust/grust.git"
+
+[dependencies.grust-Gio-2_0]
+path = "fake-gen/gio"

@@ -17,7 +17,6 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 #![crate_name = "grust-Gio-2_0"]
-
 #![crate_type = "lib"]
 
 #![allow(unstable)]
@@ -25,10 +24,10 @@
 #[macro_use]
 extern crate grust;
 
+extern crate "gio-2_0-sys" as ffi;
+extern crate "gobject-2_0-sys" as gobject_ffi;
 extern crate "grust-GLib-2_0" as glib;
 extern crate "grust-GObject-2_0" as gobject;
-
-extern crate libc;
 
 use grust::error;
 use grust::gstr;
@@ -47,54 +46,54 @@ use std::mem;
 
 #[repr(C)]
 pub struct AsyncResult {
-    raw: raw::GAsyncResult,
+    raw: ffi::GAsyncResult,
     _marker: marker::ObjectMarker
 }
 
 unsafe impl wrap::Wrapper for AsyncResult {
-    type Raw = raw::GAsyncResult;
+    type Raw = ffi::GAsyncResult;
 }
 
 #[repr(C)]
 pub struct File {
-    raw: raw::GFile,
+    raw: ffi::GFile,
     _marker: marker::ObjectMarker
 }
 
 unsafe impl wrap::Wrapper for File {
-    type Raw = raw::GFile;
+    type Raw = ffi::GFile;
 }
 
 #[repr(C)]
 pub struct Cancellable {
-    raw: raw::GCancellable,
+    raw: ffi::GCancellable,
     _marker: marker::ObjectMarker
 }
 
 unsafe impl Send for Cancellable { }
 unsafe impl Sync for Cancellable { }
 unsafe impl wrap::Wrapper for Cancellable {
-    type Raw = raw::GCancellable;
+    type Raw = ffi::GCancellable;
 }
 
 #[repr(C)]
 pub struct InputStream {
-    raw: raw::GInputStream,
+    raw: ffi::GInputStream,
     _marker: marker::ObjectMarker
 }
 
 unsafe impl wrap::Wrapper for InputStream {
-    type Raw = raw::GInputStream;
+    type Raw = ffi::GInputStream;
 }
 
 #[repr(C)]
 pub struct FileInputStream {
-    raw: raw::GFileInputStream,
+    raw: ffi::GFileInputStream,
     _marker: marker::ObjectMarker
 }
 
 unsafe impl wrap::Wrapper for FileInputStream {
-    type Raw = raw::GFileInputStream;
+    type Raw = ffi::GFileInputStream;
 }
 
 #[derive(Copy, PartialEq, Eq, FromPrimitive)]
@@ -137,71 +136,17 @@ impl IOErrorEnum {
     }
 }
 
-#[allow(missing_copy_implementations)]
-pub mod raw {
-    use grust::types::{gchar, gint, gpointer};
-    use grust::gtype::raw::GType;
-    use grust::error::raw::GError;
-    use gobject;
-    use libc;
-
-    #[repr(C)]
-    pub struct GAsyncResult;
-
-    #[repr(C)]
-    pub struct GFile;
-
-    #[repr(C)]
-    pub struct GCancellable {
-        pub parent_instance: gobject::raw::GObject,
-        _priv: gpointer
-    }
-
-    #[repr(C)]
-    pub struct GInputStream {
-        pub parent_instance: gobject::raw::GObject,
-        _priv: gpointer
-    }
-
-    #[repr(C)]
-    pub struct GFileInputStream {
-        pub parent_instance: GInputStream,
-        _priv: gpointer
-    }
-
-    pub type GAsyncReadyCallback = extern "C" fn(source_object: *mut gobject::raw::GObject,
-                                                 res: *mut GAsyncResult,
-                                                 user_data: gpointer);  
-
-    #[link(name="gio-2.0")]
-    extern {
-        pub fn g_async_result_get_type() -> GType;
-        pub fn g_file_get_type() -> GType;
-        pub fn g_file_new_for_path(path: *const gchar) -> *mut GFile;
-        pub fn g_file_get_path(file: *mut GFile) -> *mut libc::c_char;
-        pub fn g_file_read_async(file: *mut GFile,
-                                 io_priority: gint,
-                                 cancellable: *mut GCancellable,
-                                 callback: GAsyncReadyCallback,
-                                 user_data: gpointer);
-        pub fn g_file_read_finish(file: *mut GFile,
-                                  res: *mut GAsyncResult,
-                                  error: *mut *mut GError)
-                                  -> *mut GFileInputStream;
-        pub fn g_file_input_stream_get_type() -> GType;
-    }
-}
-
 mod async {
-    use super::raw;
+    use ffi;
+    use gobject_ffi;
     use gobject;
 
     use grust::types::gpointer;
     use grust::wrap;
     use std::mem;
 
-    pub extern "C" fn async_ready_callback<F>(source_object: *mut gobject::raw::GObject,
-                                              res: *mut raw::GAsyncResult,
+    pub extern "C" fn async_ready_callback<F>(source_object: *mut gobject_ffi::GObject,
+                                              res: *mut ffi::GAsyncResult,
                                               user_data: gpointer)
         where F: FnOnce(&gobject::Object, &super::AsyncResult)
     {
@@ -294,14 +239,14 @@ impl File {
 
     pub fn new_for_path(path: &gstr::Utf8) -> refcount::Ref<File> {
         unsafe {
-            let ret = raw::g_file_new_for_path(path.as_ptr());
+            let ret = ffi::g_file_new_for_path(path.as_ptr());
             refcount::Ref::from_raw(ret)
         }
     }
 
     pub fn get_path(&self) -> gstr::OwnedGStr {
         unsafe {
-            let ret = raw::g_file_get_path(self.as_mut_ptr());
+            let ret = ffi::g_file_get_path(self.as_mut_ptr());
             gstr::OwnedGStr::from_raw(ret)
         }
     }
@@ -323,8 +268,8 @@ impl File {
             };
             let callback: gpointer = mem::transmute(Box::new(callback));
 
-            raw::g_file_read_async(self.as_mut_ptr(),
-                                   io_priority as libc::c_int,
+            ffi::g_file_read_async(self.as_mut_ptr(),
+                                   io_priority,
                                    cancellable,
                                    async::async_ready_callback::<F>,
                                    callback);
@@ -337,7 +282,7 @@ impl File {
         use grust::wrap::Wrapper;
         unsafe {
             let mut err: grust::error::Error = grust::error::none();
-            let ret = raw::g_file_read_finish(self.as_mut_ptr(),
+            let ret = ffi::g_file_read_finish(self.as_mut_ptr(),
                                               res.as_mut_ptr(),
                                               err.slot_ptr());
             if err.is_set() {
@@ -352,7 +297,7 @@ impl File {
 unsafe impl object::ObjectType for AsyncResult {
     fn get_type() -> GType {
         unsafe {
-            GType::new(raw::g_async_result_get_type())
+            GType::new(ffi::g_async_result_get_type())
         }
     }
 }
@@ -360,7 +305,7 @@ unsafe impl object::ObjectType for AsyncResult {
 unsafe impl object::ObjectType for File {
     fn get_type() -> GType {
         unsafe {
-            GType::new(raw::g_file_get_type())
+            GType::new(ffi::g_file_get_type())
         }
     }
 }
@@ -368,7 +313,7 @@ unsafe impl object::ObjectType for File {
 unsafe impl object::ObjectType for FileInputStream {
     fn get_type() -> GType {
         unsafe {
-            GType::new(raw::g_file_input_stream_get_type())
+            GType::new(ffi::g_file_input_stream_get_type())
         }
     }
 }

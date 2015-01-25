@@ -17,11 +17,11 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 #![crate_name = "grust-GObject-2_0"]
-
 #![crate_type = "lib"]
 
 extern crate grust;
 extern crate "grust-GLib-2_0" as glib;
+extern crate "gobject-2_0-sys" as ffi;
 
 use grust::gtype::GType;
 use grust::marker;
@@ -30,22 +30,22 @@ use grust::wrap;
 
 #[repr(C)]
 pub struct TypeInstance {
-    raw: raw::GTypeInstance,
+    raw: ffi::GTypeInstance,
     _marker: marker::ObjectMarker
 }
 
 unsafe impl wrap::Wrapper for TypeInstance {
-    type Raw = raw::GTypeInstance;
+    type Raw = ffi::GTypeInstance;
 }
 
 #[repr(C)]
 pub struct Object {
-    raw: raw::GObject,
+    raw: ffi::GObject,
     _marker: marker::ObjectMarker
 }
 
 unsafe impl wrap::Wrapper for Object {
-    type Raw = raw::GObject;
+    type Raw = ffi::GObject;
 }
 
 pub mod cast {
@@ -62,33 +62,10 @@ pub mod cast {
     }
 }
 
-#[allow(missing_copy_implementations)]
-pub mod raw {
-    use grust::gtype::raw::GType;
-    use grust::types::{gpointer, guint};
-
-    #[repr(C)]
-    pub struct GTypeInstance {
-        g_class: gpointer
-    }
-
-    #[repr(C)]
-    pub struct GObject {
-        g_type_instance: GTypeInstance,
-        ref_count: guint,
-        data: gpointer
-    }
-
-    #[link_name="gobject-2.0"]
-    extern {
-        pub fn g_object_get_type() -> GType;
-    }
-}
-
 unsafe impl object::ObjectType for Object {
     fn get_type() -> GType {
         unsafe {
-            GType::new(raw::g_object_get_type())
+            GType::new(ffi::g_object_get_type())
         }
     }
 }

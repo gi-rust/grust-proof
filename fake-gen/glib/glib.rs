@@ -1,6 +1,6 @@
 // This file is part of Grust, GObject introspection bindings for Rust
 //
-// Copyright (C) 2014  Mikhail Zabaluev <mikhail.zabaluev@gmail.com>
+// Copyright (C) 2013, 2014  Mikhail Zabaluev <mikhail.zabaluev@gmail.com>
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -16,22 +16,8 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-use types::{gboolean,FALSE};
+#![crate_name = "grust-GLib-2_0"]
+#![crate_type = "lib"]
 
-use std::ascii;
-
-#[inline]
-pub fn is_true(v: gboolean) -> bool { v != FALSE }
-
-#[inline]
-pub fn is_false(v: gboolean) -> bool { v == FALSE }
-
-pub fn escape_bytestring(s: &[u8]) -> String {
-    let mut acc = Vec::with_capacity(s.len());
-    for c in s.iter() {
-        ascii::escape_default(*c, |esc| {
-            acc.push(esc);
-        })
-    }
-    unsafe { String::from_utf8_unchecked(acc) }
-}
+extern crate grust;
+extern crate "glib-2_0-sys" as ffi;

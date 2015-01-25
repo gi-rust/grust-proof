@@ -1,7 +1,7 @@
-Grust is an implementation of
-[GObject introspection](http://live.gnome.org/GObjectIntrospection)
-bindings for the [Rust](http://www.rust-lang.org/) programming language.
+This project is a prototyping testbed used to help implement
+the code generator and test the binding infrastructure of
+[Grust](https://github.com/gi-rust/grust).
 
-The goal of this project is to provide a Rust binding generator that creates
-safe Rust bindings from GIR files, as well as generated binding crates
-for the core GLib, GObject and GIO APIs.
+Though the library crates under `fake-gen` are manually edited,
+they are meant to simulate the output of the eventual code generator
+given real introspection data for the libraries being bound.
