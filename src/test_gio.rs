@@ -16,13 +16,15 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-use gio::{File, FileInputStream, IOErrorEnum};
+use gio::{File, FileInputStream, InputStream, IOErrorEnum};
 use gio::cast::AsFile;
+use grust::error;
+use grust::error::{Error, DomainError};
 use grust::refcount::Ref;
 use grust::mainloop::{LoopRunner,MainLoop};
 use grust::object;
-use grust::error::Match as ErrorMatch;
-use std::error::Error;
+
+use std::old_io::stderr;
 
 fn run_on_mainloop<F>(setup: F) where F: FnOnce(Ref<MainLoop>) {
     let runner = LoopRunner::new();
@@ -75,33 +77,12 @@ fn async() {
             move |obj, res| {
                 let f: &File = object::cast(obj);
                 match f.read_finish(res) {
-                    Ok(_)  => {}
-                    Err(e) => { println!("Error: {}", e.description()) }
-                }
-                mainloop.quit();
-            });
-    })
-}
-
-#[test]
-fn error_to_domain() {
-    run_on_mainloop(|mainloop| {
-        let f = File::new_for_path(g_utf8!("./does-not-exist"));
-        f.read_async(0, None,
-            move |obj, res| {
-                let f: &File = object::cast(obj);
-                match f.read_finish(res) {
-                    Ok(_)  => { unreachable!() }
+                    Ok(stream)  => {
+                        assert!(object::is_instance_of::<FileInputStream, InputStream>(&*stream))
+                    }
                     Err(e) => {
-                        match IOErrorEnum::from_error(&e) {
-                            ErrorMatch::Known(code) => {
-                                assert_eq!(code, IOErrorEnum::NotFound);
-                            }
-                            ErrorMatch::Unknown(code) => {
-                                panic!("unknown error code {}", code)
-                            }
-                            _ => unreachable!()
-                        }
+                        let mut f = stderr();
+                        writeln!(&mut f, "Error: {}", e).unwrap();
                     }
                 }
                 mainloop.quit();
@@ -110,17 +91,26 @@ fn error_to_domain() {
 }
 
 #[test]
-fn error_match_partial_eq() {
+fn error_into_domain() {
     run_on_mainloop(|mainloop| {
         let f = File::new_for_path(g_utf8!("./does-not-exist"));
         f.read_async(0, None,
             move |obj, res| {
                 let f: &File = object::cast(obj);
                 match f.read_finish(res) {
-                    Ok(_)  => { unreachable!() }
+                    Ok(_) => unreachable!(),
                     Err(e) => {
-                        assert_eq!(IOErrorEnum::from_error(&e),
-                                   ErrorMatch::Known(IOErrorEnum::NotFound));
+                        let reid: Result<DomainError<IOErrorEnum>, Error>
+                                  = e.into_domain();
+                        match reid {
+                            Ok(io_error) => {
+                                assert_eq!(io_error.code(),
+                                    error::Code::Known(IOErrorEnum::NotFound));
+                            }
+                            Err(_e) => {
+                                unreachable!();
+                            }
+                        }
                     }
                 }
                 mainloop.quit();

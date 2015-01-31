@@ -21,5 +21,8 @@ path = "../gobject"
 [dependencies.gio-2_0-sys]
 path = "sys"
 
+[dependencies.glib-2_0-sys]
+git = "https://github.com/gi-rust/glib-sys.git"
+
 [dependencies.gobject-2_0-sys]
 git = "https://github.com/gi-rust/gobject-sys.git"

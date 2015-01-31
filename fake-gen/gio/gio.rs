@@ -25,11 +25,13 @@
 extern crate grust;
 
 extern crate "gio-2_0-sys" as ffi;
+extern crate "glib-2_0-sys" as glib_ffi;
 extern crate "gobject-2_0-sys" as gobject_ffi;
 extern crate "grust-GLib-2_0" as glib;
 extern crate "grust-GObject-2_0" as gobject;
 
 use grust::error;
+use grust::error::Domain as _grust_DomainTrait;
 use grust::gstr;
 use grust::gtype::GType;
 use grust::marker;
@@ -38,11 +40,11 @@ use grust::quark;
 use grust::refcount;
 use grust::types::{gint, gpointer};
 use grust::wrap;
-use grust::wrap::Wrapper;
 
 use std::fmt;
-use std::num::FromPrimitive;
 use std::mem;
+use std::ptr;
+use std::result;
 
 #[repr(C)]
 pub struct AsyncResult {
@@ -96,7 +98,7 @@ unsafe impl wrap::Wrapper for FileInputStream {
     type Raw = ffi::GFileInputStream;
 }
 
-#[derive(Copy, PartialEq, Eq, FromPrimitive)]
+#[derive(Copy, PartialEq, Eq, FromPrimitive, Debug)]
 #[repr(C)]
 pub enum IOErrorEnum {
     Failed = 0,
@@ -105,34 +107,25 @@ pub enum IOErrorEnum {
     // ...
 }
 
-impl fmt::Debug for IOErrorEnum {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let s: &'static str = match *self {
-            IOErrorEnum::Failed   => "failed",
-            IOErrorEnum::NotFound => "not-found",
-            IOErrorEnum::Exists   => "exists",
-            // ...
-        };
-        write!(f, "{}", s)
-    }
-}
+impl error::Domain for IOErrorEnum {
 
-impl IOErrorEnum {
-
-    pub fn error_domain() -> quark::Quark {
+    fn domain() -> quark::Quark {
         g_static_quark!(b"g-io-error-quark\0")
     }
 
-    pub fn from_error(err: &error::Error) -> error::Match<IOErrorEnum> {
-        let (domain, code) = err.key();
-        if domain != IOErrorEnum::error_domain() {
-            return error::Match::NotInDomain;
+    fn name(&self) -> &'static str {
+        match *self {
+            IOErrorEnum::Failed => "failed",
+            IOErrorEnum::NotFound => "not-found",
+            IOErrorEnum::Exists   => "exists",
+            // ...
         }
-        if let Some(v) = FromPrimitive::from_i64(code as i64) {
-            error::Match::Known(v)
-        } else {
-            error::Match::Unknown(code)
-        }
+    }
+}
+
+impl fmt::Display for IOErrorEnum {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -246,6 +239,7 @@ impl File {
 
     pub fn get_path(&self) -> gstr::OwnedGStr {
         unsafe {
+            use grust::wrap::Wrapper;
             let ret = ffi::g_file_get_path(self.as_mut_ptr());
             gstr::OwnedGStr::from_raw(ret)
         }
@@ -259,8 +253,9 @@ impl File {
               F: 'static
     {
         unsafe {
+            use grust::wrap::Wrapper;
+            let self_raw = self.as_mut_ptr();
             let cancellable = {
-                use grust::wrap::Wrapper;
                 match cancellable {
                     Some(c) => c.as_mut_ptr(),
                     None    => std::ptr::null_mut()
@@ -268,7 +263,7 @@ impl File {
             };
             let callback: gpointer = mem::transmute(Box::new(callback));
 
-            ffi::g_file_read_async(self.as_mut_ptr(),
+            ffi::g_file_read_async(self_raw,
                                    io_priority,
                                    cancellable,
                                    async::async_ready_callback::<F>,
@@ -277,19 +272,19 @@ impl File {
     }
 
     pub fn read_finish(&self, res: &AsyncResult)
-                      -> std::result::Result<refcount::Ref<FileInputStream>,
-                                             grust::error::Error> {
-        use grust::wrap::Wrapper;
-        unsafe {
-            let mut err: grust::error::Error = grust::error::none();
-            let ret = ffi::g_file_read_finish(self.as_mut_ptr(),
-                                              res.as_mut_ptr(),
-                                              err.slot_ptr());
-            if err.is_set() {
-                Err(err)
-            } else {
-                Ok(refcount::Ref::from_raw(ret))
-            }
+                      -> result::Result<refcount::Ref<FileInputStream>,
+                                        error::Error> {
+        let mut err: *mut glib_ffi::GError = ptr::null_mut();
+        let ret = unsafe {
+            use grust::wrap::Wrapper;
+            ffi::g_file_read_finish(self.as_mut_ptr(),
+                                    res.as_mut_ptr(),
+                                    &mut err)
+        };
+        if err.is_null() {
+            Ok(unsafe { refcount::Ref::from_raw(ret) })
+        } else {
+            Err(unsafe { error::Error::from_raw(err) })
         }
     }
 }
@@ -306,6 +301,14 @@ unsafe impl object::ObjectType for File {
     fn get_type() -> GType {
         unsafe {
             GType::new(ffi::g_file_get_type())
+        }
+    }
+}
+
+unsafe impl object::ObjectType for InputStream {
+    fn get_type() -> GType {
+        unsafe {
+            GType::new(ffi::g_input_stream_get_type())
         }
     }
 }
