@@ -26,7 +26,7 @@ extern crate "grust-Gio-2_0" as gio;
 extern crate libc;
 
 #[cfg(test)]
-mod test_gio;
+mod giotest;
 
 #[cfg(not(test))]
 fn main() {
