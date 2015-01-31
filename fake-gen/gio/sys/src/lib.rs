@@ -17,8 +17,9 @@
 #![crate_name = "gio-2_0-sys"]
 #![crate_type = "lib"]
 
+#![feature(libc)]
+
 #![allow(missing_copy_implementations)]
-#![allow(unstable)]
 
 extern crate "glib-2_0-sys" as glib;
 extern crate "gobject-2_0-sys" as gobject;

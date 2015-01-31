@@ -19,7 +19,7 @@
 #![crate_name = "grust-Gio-2_0"]
 #![crate_type = "lib"]
 
-#![allow(unstable)]
+#![feature(core)]
 
 #[macro_use]
 extern crate grust;
