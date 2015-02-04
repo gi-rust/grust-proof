@@ -36,14 +36,14 @@ fn as_file() {
     let f = File::new_for_path(g_utf8!("/dev/null"));
     let g = f.as_file();
     let path = g.get_path();
-    assert_eq!(path.parse_as_utf8().unwrap(), "/dev/null");
+    assert_eq!(path.to_utf8().unwrap(), "/dev/null");
 }
 
 #[test]
 fn deref() {
     let f = File::new_for_path(g_utf8!("/dev/null"));
     let path = f.get_path();
-    assert_eq!(path.parse_as_utf8().unwrap(), "/dev/null");
+    assert_eq!(path.to_utf8().unwrap(), "/dev/null");
 }
 
 #[test]
@@ -51,7 +51,7 @@ fn new_ref() {
     let f = File::new_for_path(g_utf8!("/dev/null"));
     let g = Ref::new(&*f);
     let path = g.get_path();
-    assert_eq!(path.parse_as_utf8().unwrap(), "/dev/null");
+    assert_eq!(path.to_utf8().unwrap(), "/dev/null");
 }
 
 #[test]
@@ -59,7 +59,7 @@ fn clone() {
     let rf = File::new_for_path(g_utf8!("/dev/null"));
     let rg = rf.clone();
     let path = rg.get_path();
-    assert_eq!(path.parse_as_utf8().unwrap(), "/dev/null");
+    assert_eq!(path.to_utf8().unwrap(), "/dev/null");
 }
 
 #[test]

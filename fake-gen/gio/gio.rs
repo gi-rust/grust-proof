@@ -241,7 +241,7 @@ impl File {
         unsafe {
             use grust::wrap::Wrapper;
             let ret = ffi::g_file_get_path(self.as_mut_ptr());
-            gstr::OwnedGStr::from_raw(ret)
+            gstr::OwnedGStr::from_ptr(ret)
         }
     }
 
