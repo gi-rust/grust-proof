@@ -11,7 +11,7 @@ name = "gio-2_0-sys"
 version = "0.0.1-dev"
 dependencies = [
  "glib-2_0-sys 0.0.2 (git+https://github.com/gi-rust/glib-sys.git)",
- "gobject-2_0-sys 0.0.3 (git+https://github.com/gi-rust/gobject-sys.git)",
+ "gobject-2_0-sys 0.0.4-dev (git+https://github.com/gi-rust/gobject-sys.git)",
  "pkg-config 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -34,7 +34,7 @@ dependencies = [
 [[package]]
 name = "gobject-2_0-sys"
 version = "0.0.3"
-source = "git+https://github.com/gi-rust/gobject-sys.git#80934ce4595b3551f0874daeea6fc412e08aa88e"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "glib-2_0-sys 0.0.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "pkg-config 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -42,8 +42,8 @@ dependencies = [
 
 [[package]]
 name = "gobject-2_0-sys"
-version = "0.0.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
+version = "0.0.4-dev"
+source = "git+https://github.com/gi-rust/gobject-sys.git#b4eb4fe6a69ccfaef274107a62e13299c85dbf23"
 dependencies = [
  "glib-2_0-sys 0.0.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "pkg-config 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -52,7 +52,7 @@ dependencies = [
 [[package]]
 name = "grust"
 version = "0.0.4-dev"
-source = "git+https://github.com/gi-rust/grust.git#dbafa7aaab9a9d981228a110a844d6397f75cd6d"
+source = "git+https://github.com/gi-rust/grust.git#608ed6032a4393372fd65b1718f1b1291b6d5cb5"
 dependencies = [
  "glib-2_0-sys 0.0.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "gobject-2_0-sys 0.0.3 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -70,7 +70,7 @@ dependencies = [
 name = "grust-GObject-2_0"
 version = "0.0.1-dev"
 dependencies = [
- "gobject-2_0-sys 0.0.3 (git+https://github.com/gi-rust/gobject-sys.git)",
+ "gobject-2_0-sys 0.0.4-dev (git+https://github.com/gi-rust/gobject-sys.git)",
  "grust 0.0.4-dev (git+https://github.com/gi-rust/grust.git)",
  "grust-GLib-2_0 0.0.1-dev",
 ]
@@ -81,7 +81,7 @@ version = "0.0.1-dev"
 dependencies = [
  "gio-2_0-sys 0.0.1-dev",
  "glib-2_0-sys 0.0.2 (git+https://github.com/gi-rust/glib-sys.git)",
- "gobject-2_0-sys 0.0.3 (git+https://github.com/gi-rust/gobject-sys.git)",
+ "gobject-2_0-sys 0.0.4-dev (git+https://github.com/gi-rust/gobject-sys.git)",
  "grust 0.0.4-dev (git+https://github.com/gi-rust/grust.git)",
  "grust-GLib-2_0 0.0.1-dev",
  "grust-GObject-2_0 0.0.1-dev",

@@ -65,7 +65,7 @@ pub mod cast {
 unsafe impl object::ObjectType for Object {
     fn get_type() -> GType {
         unsafe {
-            GType::new(ffi::g_object_get_type())
+            GType::from_raw(ffi::g_object_get_type())
         }
     }
 }

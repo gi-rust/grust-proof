@@ -144,13 +144,8 @@ mod async {
         where F: FnOnce(&gobject::Object, &super::AsyncResult)
     {
         let cb: Box<F> = unsafe { mem::transmute(user_data) };
-        let arg1 = unsafe {
-            wrap::from_raw::<gobject::Object, _>(source_object,
-                                                     &source_object)
-        };
-        let arg2 = unsafe {
-            wrap::from_raw::<super::AsyncResult, _>(res, &res)
-        };
+        let arg1 = unsafe { wrap::from_raw::<gobject::Object>(source_object) };
+        let arg2 = unsafe { wrap::from_raw::<super::AsyncResult>(res) };
         cb(arg1, arg2);
     }
 }
@@ -292,7 +287,7 @@ impl File {
 unsafe impl object::ObjectType for AsyncResult {
     fn get_type() -> GType {
         unsafe {
-            GType::new(ffi::g_async_result_get_type())
+            GType::from_raw(ffi::g_async_result_get_type())
         }
     }
 }
@@ -300,7 +295,7 @@ unsafe impl object::ObjectType for AsyncResult {
 unsafe impl object::ObjectType for File {
     fn get_type() -> GType {
         unsafe {
-            GType::new(ffi::g_file_get_type())
+            GType::from_raw(ffi::g_file_get_type())
         }
     }
 }
@@ -308,7 +303,7 @@ unsafe impl object::ObjectType for File {
 unsafe impl object::ObjectType for InputStream {
     fn get_type() -> GType {
         unsafe {
-            GType::new(ffi::g_input_stream_get_type())
+            GType::from_raw(ffi::g_input_stream_get_type())
         }
     }
 }
@@ -316,7 +311,7 @@ unsafe impl object::ObjectType for InputStream {
 unsafe impl object::ObjectType for FileInputStream {
     fn get_type() -> GType {
         unsafe {
-            GType::new(ffi::g_file_input_stream_get_type())
+            GType::from_raw(ffi::g_file_input_stream_get_type())
         }
     }
 }
@@ -326,7 +321,7 @@ impl object::Upcast<gobject::Object> for Cancellable {
     #[inline]
     fn upcast(&self) -> &gobject::Object {
         unsafe {
-            wrap::from_raw(&self.raw.parent_instance, self)
+            wrap::from_raw(&self.raw.parent_instance)
         }
     }
 }
@@ -336,7 +331,7 @@ impl object::Upcast<gobject::Object> for InputStream {
     #[inline]
     fn upcast(&self) -> &gobject::Object {
         unsafe {
-            wrap::from_raw(&self.raw.parent_instance, self)
+            wrap::from_raw(&self.raw.parent_instance)
         }
     }
 }
@@ -346,7 +341,7 @@ impl object::Upcast<InputStream> for FileInputStream {
     #[inline]
     fn upcast(&self) -> &InputStream {
         unsafe {
-            wrap::from_raw(&self.raw.parent_instance, self)
+            wrap::from_raw(&self.raw.parent_instance)
         }
     }
 }
