@@ -30,8 +30,9 @@ extern crate "gobject-2_0-sys" as gobject_ffi;
 extern crate "grust-GLib-2_0" as glib;
 extern crate "grust-GObject-2_0" as gobject;
 
+use grust::enumeration;
+use grust::enumeration::IntrospectedEnum as _grust_IntrospectedEnumTrait;
 use grust::error;
-use grust::error::Domain as _grust_DomainTrait;
 use grust::gstr;
 use grust::gtype::GType;
 use grust::marker;
@@ -43,6 +44,7 @@ use grust::wrap;
 
 use std::fmt;
 use std::mem;
+use std::num;
 use std::ptr;
 use std::result;
 
@@ -107,10 +109,14 @@ pub enum IOErrorEnum {
     // ...
 }
 
-impl error::Domain for IOErrorEnum {
+impl enumeration::IntrospectedEnum for IOErrorEnum {
 
-    fn domain() -> quark::Quark {
-        g_static_quark!(b"g-io-error-quark\0")
+    fn from_int(v: gint) -> Option<Self> {
+        num::from_i32(v as i32)
+    }
+
+    fn to_int(&self) -> gint {
+        *self as gint
     }
 
     fn name(&self) -> &'static str {
@@ -120,6 +126,18 @@ impl error::Domain for IOErrorEnum {
             IOErrorEnum::Exists   => "exists",
             // ...
         }
+    }
+}
+
+impl enumeration::EnumType for IOErrorEnum {
+    fn get_type() -> GType {
+        unsafe { GType::from_raw(ffi::g_io_error_enum_get_type()) }
+    }
+}
+
+impl error::Domain for IOErrorEnum {
+    fn domain() -> quark::Quark {
+        g_static_quark!(b"g-io-error-quark\0")
     }
 }
 
