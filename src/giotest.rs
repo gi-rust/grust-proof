@@ -18,11 +18,13 @@
 
 use gio::{File, FileInputStream, InputStream, IOErrorEnum};
 use gio::cast::AsFile;
+use grust::enumeration;
 use grust::error;
 use grust::error::{Error, DomainError};
 use grust::refcount::Ref;
 use grust::mainloop::{LoopRunner,MainLoop};
 use grust::object;
+use grust::value::Value;
 
 use std::old_io::stderr;
 
@@ -113,6 +115,31 @@ fn error_into_domain() {
                         }
                     }
                 }
+                mainloop.quit();
+            });
+    })
+}
+
+#[test]
+fn value_enum() {
+    run_on_mainloop(|mainloop| {
+        let f = File::new_for_path(g_utf8!("./does-not-exist"));
+        f.read_async(0, None,
+            move |obj, res| {
+                let f: &File = object::cast(obj);
+                let err = f.read_finish(res).err().unwrap();
+                let code = g_error_match! {
+                    (err) {
+                        (io_error: DomainError<IOErrorEnum>) => {
+                            io_error.code().known().unwrap()
+                        },
+                        other _err => unreachable!()
+                    }
+                };
+                let mut value = Value::new(enumeration::type_of::<IOErrorEnum>());
+                value.set_enum(code);
+                let value = value.clone();
+                assert_eq!(value.get_enum(), Some(IOErrorEnum::NotFound));
                 mainloop.quit();
             });
     })
