@@ -71,6 +71,7 @@ extern {
                               res: *mut GAsyncResult,
                               error: *mut *mut GError)
                               -> *mut GFileInputStream;
+    pub fn g_file_attribute_info_flags_get_type() -> GType;
     pub fn g_file_input_stream_get_type() -> GType;
     pub fn g_input_stream_get_type() -> GType;
     pub fn g_io_error_enum_get_type() -> GType;

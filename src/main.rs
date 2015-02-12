@@ -28,6 +28,9 @@ extern crate libc;
 #[cfg(test)]
 mod giotest;
 
+#[cfg(test)]
+mod typetest;
+
 #[cfg(not(test))]
 fn main() {
 }

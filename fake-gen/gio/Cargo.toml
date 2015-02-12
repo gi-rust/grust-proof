@@ -9,6 +9,9 @@ license = "LGPL-2.1+"
 name = "grust-Gio-2_0"
 path = "gio.rs"
 
+[dependencies]
+bitflags = "0.1"
+
 [dependencies.grust]
 git = "https://github.com/gi-rust/grust.git"
 

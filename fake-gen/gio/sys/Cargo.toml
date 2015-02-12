@@ -10,7 +10,7 @@ links = "gio-2.0"
 build = "build.rs"
 
 [build-dependencies]
-pkg-config = "0.1.6"
+pkg-config = "0.1.7"
 
 [dependencies.glib-2_0-sys]
 git = "https://github.com/gi-rust/glib-sys.git"

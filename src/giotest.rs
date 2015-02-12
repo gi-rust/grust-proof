@@ -139,7 +139,7 @@ fn value_enum() {
                 let mut value = Value::new(enumeration::type_of::<IOErrorEnum>());
                 value.set_enum(code);
                 let value = value.clone();
-                assert_eq!(value.get_enum(), Some(IOErrorEnum::NotFound));
+                assert_eq!(value.get_enum(), Ok(IOErrorEnum::NotFound));
                 mainloop.quit();
             });
     })

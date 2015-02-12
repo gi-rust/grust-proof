@@ -20,9 +20,13 @@
 #![crate_type = "lib"]
 
 #![feature(core)]
+#![feature(hash)]
 
 #[macro_use]
 extern crate grust;
+
+#[macro_use]
+extern crate bitflags;
 
 extern crate "gio-2_0-sys" as ffi;
 extern crate "glib-2_0-sys" as glib_ffi;
@@ -111,8 +115,9 @@ pub enum IOErrorEnum {
 
 impl enumeration::IntrospectedEnum for IOErrorEnum {
 
-    fn from_int(v: gint) -> Option<Self> {
+    fn from_int(v: gint) -> Result<Self, enumeration::UnknownValue> {
         num::from_i32(v as i32)
+            .ok_or_else(|| enumeration::UnknownValue(v))
     }
 
     fn to_int(&self) -> gint {
@@ -146,6 +151,68 @@ impl fmt::Display for IOErrorEnum {
         write!(f, "{}", self.name())
     }
 }
+
+pub mod flags {
+
+    pub mod file_attribute_info {
+        use grust::flags::prelude::*;
+        use ffi;
+        use std::fmt;
+
+        bitflags! {
+            flags Flags: guint {
+                const NONE            = 0,
+                const COPY_WITH_FILE  = 1,
+                const COPY_WHEN_MOVED = 2,
+            }
+        }
+
+        impl IntrospectedFlags for Flags {
+
+            fn from_uint(v: guint) -> Result<Flags, UnknownFlags> {
+                Flags::from_bits(v)
+                    .ok_or_else(|| UnknownFlags::new(v, Flags::all().bits()))
+            }
+
+            #[inline]
+            fn to_uint(&self) -> guint {
+                self.bits()
+            }
+        }
+
+        impl FlagsType for Flags {
+            fn get_type() -> GType {
+                unsafe {
+                    let raw = ffi::g_file_attribute_info_flags_get_type();
+                    GType::from_raw(raw)
+                }
+            }
+        }
+
+        impl fmt::Debug for Flags {
+            fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+                const FLAG_INFO: &'static [(Flags, &'static str)] = &[
+                    (COPY_WITH_FILE,  "COPY_WITH_FILE"),
+                    (COPY_WHEN_MOVED, "COPY_WHEN_MOVED")
+                ];
+                let mut contents = String::new();
+                for &(flag, name) in FLAG_INFO.iter() {
+                    if self.contains(flag) {
+                        if contents.is_empty() {
+                            contents.push_str(name);
+                        } else {
+                            contents.push('|');
+                            contents.push_str(name);
+                        }
+                    }
+                }
+                write!(f, "FileAttributeInfoFlags({})", contents)
+            }
+        }
+    }
+}
+
+pub use flags::file_attribute_info::Flags as FileAttributeInfoFlags;
 
 mod async {
     use ffi;
