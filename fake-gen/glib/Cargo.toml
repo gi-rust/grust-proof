@@ -9,8 +9,8 @@ license = "LGPL-2.1+"
 name = "grust-GLib-2_0"
 path = "glib.rs"
 
+[dependencies]
+glib-2_0-sys = "0.0.2"
+
 [dependencies.grust]
 git = "https://github.com/gi-rust/grust.git"
-
-[dependencies.glib-2_0-sys]
-git = "https://github.com/gi-rust/glib-sys.git"

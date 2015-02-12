@@ -9,11 +9,11 @@ license = "LGPL-2.1+"
 name = "grust-GObject-2_0"
 path = "gobject.rs"
 
+[dependencies]
+gobject-2_0-sys = "0.0.4"
+
 [dependencies.grust]
 git = "https://github.com/gi-rust/grust.git"
 
 [dependencies.grust-GLib-2_0]
 path = "../glib"
-
-[dependencies.gobject-2_0-sys]
-git = "https://github.com/gi-rust/gobject-sys.git"

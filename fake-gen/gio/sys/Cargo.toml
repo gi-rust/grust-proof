@@ -12,8 +12,6 @@ build = "build.rs"
 [build-dependencies]
 pkg-config = "0.1.7"
 
-[dependencies.glib-2_0-sys]
-git = "https://github.com/gi-rust/glib-sys.git"
-
-[dependencies.gobject-2_0-sys]
-git = "https://github.com/gi-rust/gobject-sys.git"
+[dependencies]
+glib-2_0-sys = "0.0.2"
+gobject-2_0-sys = "0.0.4"
