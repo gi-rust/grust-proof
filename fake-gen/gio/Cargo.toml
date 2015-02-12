@@ -11,8 +11,8 @@ path = "gio.rs"
 
 [dependencies]
 bitflags = "0.1"
-glib-2_0-sys = "0.0.2"
-gobject-2_0-sys = "0.0.4"
+glib-2_0-sys = "0.0.3"
+gobject-2_0-sys = "0.0.5"
 
 [dependencies.grust]
 git = "https://github.com/gi-rust/grust.git"

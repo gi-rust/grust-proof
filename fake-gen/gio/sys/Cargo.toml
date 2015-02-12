@@ -10,8 +10,8 @@ links = "gio-2.0"
 build = "build.rs"
 
 [build-dependencies]
-pkg-config = "0.1.7"
+pkg-config = "0.2"
 
 [dependencies]
-glib-2_0-sys = "0.0.2"
-gobject-2_0-sys = "0.0.4"
+glib-2_0-sys = "0.0.3"
+gobject-2_0-sys = "0.0.5"
