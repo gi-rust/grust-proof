@@ -26,6 +26,7 @@
 extern crate grust;
 
 #[macro_use]
+#[no_link]
 extern crate bitflags;
 
 extern crate "gio-2_0-sys" as ffi;
