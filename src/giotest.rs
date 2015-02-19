@@ -26,8 +26,6 @@ use grust::mainloop::{LoopRunner,MainLoop};
 use grust::object;
 use grust::value::Value;
 
-use std::old_io::stderr;
-
 fn run_on_mainloop<F>(setup: F) where F: FnOnce(Ref<MainLoop>) {
     let runner = LoopRunner::new();
     runner.run_after(setup);
@@ -82,10 +80,7 @@ fn async() {
                     Ok(stream)  => {
                         assert!(object::is_instance_of::<FileInputStream, InputStream>(&*stream))
                     }
-                    Err(e) => {
-                        let mut f = stderr();
-                        writeln!(&mut f, "Error: {}", e).unwrap();
-                    }
+                    Err(_) => { }
                 }
                 mainloop.quit();
             });

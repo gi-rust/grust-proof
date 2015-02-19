@@ -21,7 +21,7 @@ use grust::value::Value;
 use gio::FileAttributeInfoFlags;
 use gio::flags::file_attribute_info::{NONE, COPY_WITH_FILE, COPY_WHEN_MOVED};
 
-use std::fmt::Writer;
+use std::fmt::Write;
 
 #[test]
 fn flags() {
