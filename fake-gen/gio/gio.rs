@@ -20,7 +20,6 @@
 #![crate_type = "lib"]
 
 #![feature(core)]
-#![feature(hash)]
 
 #[macro_use]
 extern crate grust;
