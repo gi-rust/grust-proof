@@ -17,13 +17,10 @@
 #![crate_name = "gio-2_0-sys"]
 #![crate_type = "lib"]
 
-#![feature(libc)]
-
 #![allow(missing_copy_implementations)]
 
 extern crate "glib-2_0-sys" as glib;
 extern crate "gobject-2_0-sys" as gobject;
-extern crate libc;
 
 use glib::types::{gchar, gint, gpointer};
 use glib::GError;
@@ -59,7 +56,7 @@ pub type GAsyncReadyCallback = extern "C" fn(source_object: *mut gobject::GObjec
 
 extern {
     pub fn g_async_result_get_type() -> GType;
-    pub fn g_file_get_path(file: *mut GFile) -> *mut libc::c_char;
+    pub fn g_file_get_path(file: *mut GFile) -> *mut gchar;
     pub fn g_file_get_type() -> GType;
     pub fn g_file_new_for_path(path: *const gchar) -> *mut GFile;
     pub fn g_file_read_async(file: *mut GFile,

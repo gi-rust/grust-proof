@@ -16,13 +16,10 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-#![feature(libc)]
-
 #[macro_use]
 extern crate grust;
 
 extern crate "grust-Gio-2_0" as gio;
-extern crate libc;
 
 #[cfg(test)]
 mod giotest;
