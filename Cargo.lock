@@ -40,7 +40,7 @@ dependencies = [
 [[package]]
 name = "grust"
 version = "0.0.8-dev"
-source = "git+https://github.com/gi-rust/grust.git#feb3a4f3fc9622f10ad0fbd339c59b96d4621f50"
+source = "git+https://github.com/gi-rust/grust.git#5265fca705f5579803c6aac979403fe600767b98"
 dependencies = [
  "glib-2_0-sys 0.0.6 (registry+https://github.com/rust-lang/crates.io-index)",
  "gobject-2_0-sys 0.0.7 (registry+https://github.com/rust-lang/crates.io-index)",
