@@ -19,6 +19,8 @@
 #![crate_name = "grust-Gio-2_0"]
 #![crate_type = "lib"]
 
+#![allow(unstable_features)]
+
 #![feature(core)]
 
 #[macro_use]
