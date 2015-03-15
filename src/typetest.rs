@@ -56,7 +56,7 @@ fn flags_debug() {
 }
 
 #[test]
-#[should_fail]
+#[should_panic]
 fn flags_unknown_panic() {
     let a = COPY_WITH_FILE.bits() | 0b10000;
     let _ = flags::from_uint::<FileAttributeInfoFlags>(a).unwrap();

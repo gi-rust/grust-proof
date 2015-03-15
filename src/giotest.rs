@@ -65,7 +65,7 @@ fn clone() {
 }
 
 #[test]
-#[should_fail]
+#[should_panic]
 fn cast_fail() {
     let rf = File::new_for_path(g_utf8!("/dev/null"));
     let _: &FileInputStream = object::cast(&*rf);

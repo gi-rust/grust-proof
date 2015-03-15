@@ -17,7 +17,7 @@ version = "0.0.1-dev"
 dependencies = [
  "glib-2_0-sys 0.0.7 (registry+https://github.com/rust-lang/crates.io-index)",
  "gobject-2_0-sys 0.0.8 (registry+https://github.com/rust-lang/crates.io-index)",
- "pkg-config 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "pkg-config 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -25,7 +25,7 @@ name = "glib-2_0-sys"
 version = "0.0.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "pkg-config 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "pkg-config 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -34,13 +34,13 @@ version = "0.0.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "glib-2_0-sys 0.0.7 (registry+https://github.com/rust-lang/crates.io-index)",
- "pkg-config 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "pkg-config 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "grust"
 version = "0.0.10-dev"
-source = "git+https://github.com/gi-rust/grust.git#5a67a5c73047ccdb82e2a7b3361491a7ef734699"
+source = "git+https://github.com/gi-rust/grust.git#2ab987334180545c0ee11d75f230565651068f9a"
 dependencies = [
  "glib-2_0-sys 0.0.7 (registry+https://github.com/rust-lang/crates.io-index)",
  "gobject-2_0-sys 0.0.8 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -78,6 +78,6 @@ dependencies = [
 
 [[package]]
 name = "pkg-config"
-version = "0.3.0"
+version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
