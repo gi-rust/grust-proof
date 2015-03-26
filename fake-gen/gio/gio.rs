@@ -19,6 +19,7 @@
 #![crate_name = "grust_Gio_2_0"]
 #![crate_type = "lib"]
 
+#![allow(trivial_numeric_casts)]
 #![allow(unstable_features)]
 
 #![feature(core)]
