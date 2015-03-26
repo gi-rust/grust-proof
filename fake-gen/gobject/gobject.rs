@@ -16,12 +16,12 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-#![crate_name = "grust-GObject-2_0"]
+#![crate_name = "grust_GObject_2_0"]
 #![crate_type = "lib"]
 
 extern crate grust;
-extern crate "grust-GLib-2_0" as glib;
-extern crate "gobject-2_0-sys" as ffi;
+extern crate grust_GLib_2_0 as glib;
+extern crate gobject_2_0_sys as ffi;
 
 use grust::gtype::GType;
 use grust::marker;

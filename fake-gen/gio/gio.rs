@@ -16,7 +16,7 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-#![crate_name = "grust-Gio-2_0"]
+#![crate_name = "grust_Gio_2_0"]
 #![crate_type = "lib"]
 
 #![allow(unstable_features)]
@@ -30,11 +30,11 @@ extern crate grust;
 #[no_link]
 extern crate bitflags;
 
-extern crate "gio-2_0-sys" as ffi;
-extern crate "glib-2_0-sys" as glib_ffi;
-extern crate "gobject-2_0-sys" as gobject_ffi;
-extern crate "grust-GLib-2_0" as glib;
-extern crate "grust-GObject-2_0" as gobject;
+extern crate gio_2_0_sys as ffi;
+extern crate glib_2_0_sys as glib_ffi;
+extern crate gobject_2_0_sys as gobject_ffi;
+extern crate grust_GLib_2_0 as glib;
+extern crate grust_GObject_2_0 as gobject;
 
 use grust::enumeration;
 use grust::enumeration::IntrospectedEnum as _grust_IntrospectedEnumTrait;

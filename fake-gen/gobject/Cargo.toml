@@ -6,11 +6,11 @@ authors = ["Mikhail Zabaluev <mikhail.zabaluev@gmail.com"]
 license = "LGPL-2.1+"
 
 [lib]
-name = "grust-GObject-2_0"
+name = "grust_GObject_2_0"
 path = "gobject.rs"
 
 [dependencies]
-gobject-2_0-sys = "0.0.8"
+gobject-2_0-sys = "0.0.9"
 
 [dependencies.grust]
 git = "https://github.com/gi-rust/grust.git"

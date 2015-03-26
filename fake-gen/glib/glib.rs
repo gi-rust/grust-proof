@@ -16,8 +16,8 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-#![crate_name = "grust-GLib-2_0"]
+#![crate_name = "grust_GLib_2_0"]
 #![crate_type = "lib"]
 
 extern crate grust;
-extern crate "glib-2_0-sys" as ffi;
+extern crate glib_2_0_sys as ffi;
