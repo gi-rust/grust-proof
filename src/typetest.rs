@@ -65,8 +65,10 @@ fn flags_unknown_panic() {
 #[test]
 fn value_flags() {
     let mut value = Value::new(flags::type_of::<FileAttributeInfoFlags>());
-    assert_eq!(value.get_flags().unwrap(), FileAttributeInfoFlags::empty());
+    let flags = value.get_flags::<FileAttributeInfoFlags>().unwrap();
+    assert_eq!(flags, FileAttributeInfoFlags::empty());
     value.set_flags(COPY_WITH_FILE | COPY_WHEN_MOVED);
     let value = value.clone();
-    assert_eq!(value.get_flags().unwrap(), COPY_WITH_FILE | COPY_WHEN_MOVED);
+    let flags = value.get_flags::<FileAttributeInfoFlags>().unwrap();
+    assert_eq!(flags, COPY_WITH_FILE | COPY_WHEN_MOVED);
 }
