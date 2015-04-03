@@ -10,7 +10,7 @@ name = "grust_GLib_2_0"
 path = "glib.rs"
 
 [dependencies]
-glib-2_0-sys = "0.0.8"
+glib-2_0-sys = "0.1.0"
 
 [dependencies.grust]
 git = "https://github.com/gi-rust/grust.git"

@@ -10,7 +10,7 @@ name = "grust_GObject_2_0"
 path = "gobject.rs"
 
 [dependencies]
-gobject-2_0-sys = "0.0.9"
+gobject-2_0-sys = "0.1.0"
 
 [dependencies.grust]
 git = "https://github.com/gi-rust/grust.git"
