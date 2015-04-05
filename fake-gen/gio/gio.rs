@@ -20,9 +20,6 @@
 #![crate_type = "lib"]
 
 #![allow(trivial_numeric_casts)]
-#![allow(unstable_features)]
-
-#![feature(core)]
 
 #[macro_use]
 extern crate grust;
@@ -50,7 +47,6 @@ use grust::wrap;
 
 use std::fmt;
 use std::mem;
-use std::num;
 use std::ptr;
 use std::result;
 
@@ -113,8 +109,12 @@ pub enum IOErrorEnum {
 impl enumeration::IntrospectedEnum for IOErrorEnum {
 
     fn from_int(v: gint) -> Result<Self, enumeration::UnknownValue> {
-        num::from_i32(v as i32)
-            .ok_or_else(|| enumeration::UnknownValue(v))
+        match v {
+            0 => Ok(IOErrorEnum::Failed),
+            1 => Ok(IOErrorEnum::NotFound),
+            2 => Ok(IOErrorEnum::Exists),
+            _ => Err(enumeration::UnknownValue(v))
+        }
     }
 
     fn to_int(&self) -> gint {
