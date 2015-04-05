@@ -16,6 +16,7 @@ gobject-2_0-sys = "0.1.0"
 
 [dependencies.grust]
 git = "https://github.com/gi-rust/grust.git"
+branch = "stable"
 
 [dependencies.grust-GLib-2_0]
 path = "../glib"
