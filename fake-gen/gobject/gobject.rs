@@ -24,14 +24,12 @@ extern crate grust_GLib_2_0 as glib;
 extern crate gobject_2_0_sys as ffi;
 
 use grust::gtype::GType;
-use grust::marker;
 use grust::object;
 use grust::wrap;
 
 #[repr(C)]
 pub struct TypeInstance {
-    raw: ffi::GTypeInstance,
-    _marker: marker::ObjectMarker
+    raw: ffi::GTypeInstance
 }
 
 unsafe impl wrap::Wrapper for TypeInstance {
@@ -40,8 +38,7 @@ unsafe impl wrap::Wrapper for TypeInstance {
 
 #[repr(C)]
 pub struct Object {
-    raw: ffi::GObject,
-    _marker: marker::ObjectMarker
+    raw: ffi::GObject
 }
 
 unsafe impl wrap::Wrapper for Object {

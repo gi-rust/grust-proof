@@ -42,7 +42,6 @@ use grust::enumeration::IntrospectedEnum as _grust_IntrospectedEnumTrait;
 use grust::error;
 use grust::gstr;
 use grust::gtype::GType;
-use grust::marker;
 use grust::object;
 use grust::quark;
 use grust::refcount;
@@ -57,8 +56,7 @@ use std::result;
 
 #[repr(C)]
 pub struct AsyncResult {
-    raw: ffi::GAsyncResult,
-    _marker: marker::ObjectMarker
+    raw: ffi::GAsyncResult
 }
 
 unsafe impl wrap::Wrapper for AsyncResult {
@@ -67,8 +65,7 @@ unsafe impl wrap::Wrapper for AsyncResult {
 
 #[repr(C)]
 pub struct File {
-    raw: ffi::GFile,
-    _marker: marker::ObjectMarker
+    raw: ffi::GFile
 }
 
 unsafe impl wrap::Wrapper for File {
@@ -77,8 +74,7 @@ unsafe impl wrap::Wrapper for File {
 
 #[repr(C)]
 pub struct Cancellable {
-    raw: ffi::GCancellable,
-    _marker: marker::ObjectMarker
+    raw: ffi::GCancellable
 }
 
 unsafe impl Send for Cancellable { }
@@ -89,8 +85,7 @@ unsafe impl wrap::Wrapper for Cancellable {
 
 #[repr(C)]
 pub struct InputStream {
-    raw: ffi::GInputStream,
-    _marker: marker::ObjectMarker
+    raw: ffi::GInputStream
 }
 
 unsafe impl wrap::Wrapper for InputStream {
