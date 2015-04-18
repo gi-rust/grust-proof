@@ -2,7 +2,7 @@
 name = "grust-proof"
 version = "0.0.1-dev"
 dependencies = [
- "grust 0.1.0 (git+https://github.com/gi-rust/grust.git?branch=stable)",
+ "grust 0.1.1 (git+https://github.com/gi-rust/grust.git?branch=stable)",
  "grust-Gio-2_0 0.0.1-dev",
 ]
 
@@ -25,7 +25,7 @@ name = "glib-2_0-sys"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "libc 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)",
  "pkg-config 0.3.3 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -40,12 +40,12 @@ dependencies = [
 
 [[package]]
 name = "grust"
-version = "0.1.0"
-source = "git+https://github.com/gi-rust/grust.git?branch=stable#b19d65162b41daf1398dcab15b650a181b51522b"
+version = "0.1.1"
+source = "git+https://github.com/gi-rust/grust.git?branch=stable#807a08c39ebf4d4f856ed9033800caafe9bae751"
 dependencies = [
  "glib-2_0-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "gobject-2_0-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "libc 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -53,7 +53,7 @@ name = "grust-GLib-2_0"
 version = "0.0.1-dev"
 dependencies = [
  "glib-2_0-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "grust 0.1.0 (git+https://github.com/gi-rust/grust.git?branch=stable)",
+ "grust 0.1.1 (git+https://github.com/gi-rust/grust.git?branch=stable)",
 ]
 
 [[package]]
@@ -61,7 +61,7 @@ name = "grust-GObject-2_0"
 version = "0.0.1-dev"
 dependencies = [
  "gobject-2_0-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "grust 0.1.0 (git+https://github.com/gi-rust/grust.git?branch=stable)",
+ "grust 0.1.1 (git+https://github.com/gi-rust/grust.git?branch=stable)",
  "grust-GLib-2_0 0.0.1-dev",
 ]
 
@@ -73,14 +73,14 @@ dependencies = [
  "gio-2_0-sys 0.0.1-dev",
  "glib-2_0-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "gobject-2_0-sys 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "grust 0.1.0 (git+https://github.com/gi-rust/grust.git?branch=stable)",
+ "grust 0.1.1 (git+https://github.com/gi-rust/grust.git?branch=stable)",
  "grust-GLib-2_0 0.0.1-dev",
  "grust-GObject-2_0 0.0.1-dev",
 ]
 
 [[package]]
 name = "libc"
-version = "0.1.5"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
