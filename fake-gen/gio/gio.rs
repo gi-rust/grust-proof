@@ -97,7 +97,7 @@ unsafe impl wrap::Wrapper for FileInputStream {
     type Raw = ffi::GFileInputStream;
 }
 
-#[derive(Copy, Clone, PartialEq, Eq, FromPrimitive, Debug)]
+#[derive(Copy, Clone, PartialEq, Eq, Debug)]
 #[repr(C)]
 pub enum IOErrorEnum {
     Failed = 0,
