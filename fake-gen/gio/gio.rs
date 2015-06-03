@@ -327,7 +327,7 @@ impl File {
                          cancellable: Option<&Cancellable>,
                          callback: F)
         where F: FnOnce(&gobject::Object, &AsyncResult),
-              F: 'static
+              F: Send + 'static
     {
         unsafe {
             use grust::wrap::Wrapper;
