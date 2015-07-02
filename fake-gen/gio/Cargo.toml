@@ -10,7 +10,7 @@ name = "grust_Gio_2_0"
 path = "gio.rs"
 
 [dependencies]
-bitflags = "0.1"
+bitflags = "0.3"
 glib-2_0-sys = "0.1.0"
 gobject-2_0-sys = "0.1.0"
 

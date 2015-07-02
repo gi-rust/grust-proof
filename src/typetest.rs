@@ -21,8 +21,6 @@ use grust::value::Value;
 use gio::FileAttributeInfoFlags;
 use gio::flags::file_attribute_info::{NONE, COPY_WITH_FILE, COPY_WHEN_MOVED};
 
-use std::fmt::Write;
-
 #[test]
 fn flags() {
     assert_eq!(NONE, FileAttributeInfoFlags::empty());
@@ -40,19 +38,6 @@ fn unknown_flags() {
     assert_eq!(unknown_flags.actual(), a);
     assert_eq!(unknown_flags.known(), COPY_WITH_FILE.bits());
     assert_eq!(unknown_flags.unknown(), 0b10000);
-}
-
-#[test]
-fn flags_debug() {
-    let mut s = String::new();
-    write!(&mut s, "{:?}", NONE).unwrap();
-    assert_eq!(&s[..], "FileAttributeInfoFlags()");
-    let mut s = String::new();
-    write!(&mut s, "{:?}", COPY_WHEN_MOVED).unwrap();
-    assert_eq!(&s[..], "FileAttributeInfoFlags(COPY_WHEN_MOVED)");
-    let mut s = String::new();
-    write!(&mut s, "{:?}", COPY_WITH_FILE | COPY_WHEN_MOVED).unwrap();
-    assert_eq!(&s[..], "FileAttributeInfoFlags(COPY_WITH_FILE|COPY_WHEN_MOVED)");
 }
 
 #[test]

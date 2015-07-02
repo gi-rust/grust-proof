@@ -154,7 +154,6 @@ pub mod flags {
     pub mod file_attribute_info {
         use grust::flags::prelude::*;
         use ffi;
-        use std::fmt;
 
         bitflags! {
             flags Flags: guint {
@@ -183,27 +182,6 @@ pub mod flags {
                     let raw = ffi::g_file_attribute_info_flags_get_type();
                     GType::from_raw(raw)
                 }
-            }
-        }
-
-        impl fmt::Debug for Flags {
-            fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-                const FLAG_INFO: &'static [(Flags, &'static str)] = &[
-                    (COPY_WITH_FILE,  "COPY_WITH_FILE"),
-                    (COPY_WHEN_MOVED, "COPY_WHEN_MOVED")
-                ];
-                let mut contents = String::new();
-                for &(flag, name) in FLAG_INFO.iter() {
-                    if self.contains(flag) {
-                        if contents.is_empty() {
-                            contents.push_str(name);
-                        } else {
-                            contents.push('|');
-                            contents.push_str(name);
-                        }
-                    }
-                }
-                write!(f, "FileAttributeInfoFlags({})", contents)
             }
         }
     }
