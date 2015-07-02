@@ -19,7 +19,7 @@
 #[macro_use]
 extern crate grust;
 
-extern crate grust_Gio_2_0 as gio;
+extern crate grust_gio_2_0 as gio;
 
 #[cfg(test)]
 mod giotest;

@@ -6,7 +6,7 @@ authors = ["Mikhail Zabaluev <mikhail.zabaluev@gmail.com"]
 license = "LGPL-2.1+"
 
 [lib]
-name = "grust_Gio_2_0"
+name = "grust_gio_2_0"
 path = "gio.rs"
 
 [dependencies]

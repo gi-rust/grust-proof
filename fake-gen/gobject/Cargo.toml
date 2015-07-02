@@ -6,7 +6,7 @@ authors = ["Mikhail Zabaluev <mikhail.zabaluev@gmail.com"]
 license = "LGPL-2.1+"
 
 [lib]
-name = "grust_GObject_2_0"
+name = "grust_gobject_2_0"
 path = "gobject.rs"
 
 [dependencies]
