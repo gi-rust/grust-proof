@@ -16,7 +16,7 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-#![crate_name = "grust_Gio_2_0"]
+#![crate_name = "grust_gio_2_0"]
 #![crate_type = "lib"]
 
 #![allow(trivial_numeric_casts)]
@@ -31,8 +31,8 @@ extern crate bitflags;
 extern crate gio_2_0_sys as ffi;
 extern crate glib_2_0_sys as glib_ffi;
 extern crate gobject_2_0_sys as gobject_ffi;
-extern crate grust_GLib_2_0 as glib;
-extern crate grust_GObject_2_0 as gobject;
+extern crate grust_glib_2_0 as glib;
+extern crate grust_gobject_2_0 as gobject;
 
 use grust::enumeration;
 use grust::enumeration::IntrospectedEnum as _grust_IntrospectedEnumTrait;
@@ -154,7 +154,6 @@ pub mod flags {
     pub mod file_attribute_info {
         use grust::flags::prelude::*;
         use ffi;
-        use std::fmt;
 
         bitflags! {
             flags Flags: guint {
@@ -183,27 +182,6 @@ pub mod flags {
                     let raw = ffi::g_file_attribute_info_flags_get_type();
                     GType::from_raw(raw)
                 }
-            }
-        }
-
-        impl fmt::Debug for Flags {
-            fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-                const FLAG_INFO: &'static [(Flags, &'static str)] = &[
-                    (COPY_WITH_FILE,  "COPY_WITH_FILE"),
-                    (COPY_WHEN_MOVED, "COPY_WHEN_MOVED")
-                ];
-                let mut contents = String::new();
-                for &(flag, name) in FLAG_INFO.iter() {
-                    if self.contains(flag) {
-                        if contents.is_empty() {
-                            contents.push_str(name);
-                        } else {
-                            contents.push('|');
-                            contents.push_str(name);
-                        }
-                    }
-                }
-                write!(f, "FileAttributeInfoFlags({})", contents)
             }
         }
     }
@@ -327,7 +305,7 @@ impl File {
                          cancellable: Option<&Cancellable>,
                          callback: F)
         where F: FnOnce(&gobject::Object, &AsyncResult),
-              F: 'static
+              F: Send + 'static
     {
         unsafe {
             use grust::wrap::Wrapper;
