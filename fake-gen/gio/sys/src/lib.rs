@@ -26,11 +26,9 @@ use glib::types::{gchar, gint, gpointer};
 use glib::GError;
 use gobject::GType;
 
-#[repr(C)]
-pub struct GAsyncResult;
+pub enum GAsyncResult { }
 
-#[repr(C)]
-pub struct GFile;
+pub enum GFile { }
 
 #[repr(C)]
 pub struct GCancellable {
