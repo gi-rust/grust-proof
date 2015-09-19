@@ -19,12 +19,12 @@
 
 #![allow(missing_copy_implementations)]
 
+extern crate gtypes;
 extern crate glib_2_0_sys as glib;
 extern crate gobject_2_0_sys as gobject;
 
-use glib::types::{gchar, gint, gpointer};
+use gtypes::*;
 use glib::GError;
-use gobject::GType;
 
 pub enum GAsyncResult { }
 
