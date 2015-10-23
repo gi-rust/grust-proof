@@ -52,6 +52,16 @@ pub type GAsyncReadyCallback = extern "C" fn(source_object: *mut gobject::GObjec
                                              res: *mut GAsyncResult,
                                              user_data: gpointer);  
 
+#[derive(Copy, Clone, Eq, PartialEq)]
+#[repr(C)]
+pub enum GFileAttributeInfoFlags {
+    None = 0,
+    CopyWithFile = 1,
+    CopyWhenMoved = 2
+}
+
+pub const G_DESKTOP_APP_INFO_LOOKUP_EXTENSION_POINT_NAME: &'static [u8] = b"gio-desktop-app-info-lookup\0";
+
 extern {
     pub fn g_async_result_get_type() -> GType;
     pub fn g_file_get_path(file: *mut GFile) -> *mut gchar;
