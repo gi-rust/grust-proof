@@ -9,5 +9,5 @@ readme = "README.md"
 [dependencies.grust]
 git = "https://github.com/gi-rust/grust.git"
 
-[dependencies.grust-Gio-2_0]
+[dependencies.grust-gio-2-0]
 path = "fake-gen/gio"

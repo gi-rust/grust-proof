@@ -1,6 +1,6 @@
 [package]
 
-name = "grust-Gio-2_0"
+name = "grust-gio-2-0"
 version = "0.0.1-dev"
 authors = ["Mikhail Zabaluev <mikhail.zabaluev@gmail.com>"]
 license = "LGPL-2.1+"
@@ -11,17 +11,21 @@ path = "gio.rs"
 
 [dependencies]
 bitflags = "0.3"
-glib-2_0-sys = "0.2.0"
-gobject-2_0-sys = "0.2.0"
+
+[dependencies.glib-2-0-sys]
+git = "https://github.com/gi-rust/glib-sys.git"
+
+[dependencies.gobject-2-0-sys]
+git = "https://github.com/gi-rust/gobject-sys.git"
 
 [dependencies.grust]
 git = "https://github.com/gi-rust/grust.git"
 
-[dependencies.grust-GLib-2_0]
+[dependencies.grust-glib-2-0]
 path = "../glib"
 
-[dependencies.grust-GObject-2_0]
+[dependencies.grust-gobject-2-0]
 path = "../gobject"
 
-[dependencies.gio-2_0-sys]
+[dependencies.gio-2-0-sys]
 path = "sys"
