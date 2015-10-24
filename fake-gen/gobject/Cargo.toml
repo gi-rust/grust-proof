@@ -1,8 +1,8 @@
 [package]
 
-name = "grust-GObject-2_0"
+name = "grust-gobject-2-0"
 version = "0.0.1-dev"
-authors = ["Mikhail Zabaluev <mikhail.zabaluev@gmail.com"]
+authors = ["Mikhail Zabaluev <mikhail.zabaluev@gmail.com>"]
 license = "LGPL-2.1+"
 
 [lib]
@@ -10,11 +10,11 @@ name = "grust_gobject_2_0"
 path = "gobject.rs"
 
 [dependencies]
-gobject-2_0-sys = "0.2"
+gobject-2-0-sys = "0.46"
 
 [dependencies.grust]
 git = "https://github.com/gi-rust/grust.git"
 branch = "stable"
 
-[dependencies.grust-GLib-2_0]
+[dependencies.grust-glib-2-0]
 path = "../glib"

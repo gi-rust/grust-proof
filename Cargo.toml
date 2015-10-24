@@ -10,5 +10,5 @@ readme = "README.md"
 git = "https://github.com/gi-rust/grust.git"
 branch = "stable"
 
-[dependencies.grust-Gio-2_0]
+[dependencies.grust-gio-2-0]
 path = "fake-gen/gio"
