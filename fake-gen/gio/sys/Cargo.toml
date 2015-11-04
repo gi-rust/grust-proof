@@ -13,7 +13,7 @@ build = "build.rs"
 pkg-config = "0.3"
 
 [dependencies]
-gtypes = "0.1"
+gtypes = "0.2"
 
 [dependencies.glib-2-0-sys]
 git = "https://github.com/gi-rust/glib-sys.git"
