@@ -321,7 +321,7 @@ impl File {
             ffi::g_file_read_async(self_raw,
                                    io_priority,
                                    cancellable,
-                                   async::async_ready_callback::<F>,
+                                   Some(async::async_ready_callback::<F>),
                                    callback);
         }
     }
