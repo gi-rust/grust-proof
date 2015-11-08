@@ -1,5 +1,4 @@
 [package]
-
 name = "grust-gio-2-0"
 version = "0.0.1-dev"
 authors = ["Mikhail Zabaluev <mikhail.zabaluev@gmail.com>"]
@@ -18,6 +17,9 @@ git = "https://github.com/gi-rust/glib-sys.git"
 [dependencies.gobject-2-0-sys]
 git = "https://github.com/gi-rust/gobject-sys.git"
 
+[dependencies.gio-2-0-sys]
+git = "https://github.com/gi-rust/gio-sys.git"
+
 [dependencies.grust]
 git = "https://github.com/gi-rust/grust.git"
 
@@ -26,6 +28,3 @@ path = "../glib"
 
 [dependencies.grust-gobject-2-0]
 path = "../gobject"
-
-[dependencies.gio-2-0-sys]
-path = "sys"
