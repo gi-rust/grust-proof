@@ -8,7 +8,7 @@ dependencies = [
 
 [[package]]
 name = "bitflags"
-version = "0.3.2"
+version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
@@ -19,8 +19,8 @@ dependencies = [
  "glib-2-0-sys 0.46.4 (registry+https://github.com/rust-lang/crates.io-index)",
  "gobject-2-0-sys 0.46.4 (registry+https://github.com/rust-lang/crates.io-index)",
  "gtypes 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "libc 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "pkg-config 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.7 (registry+https://github.com/rust-lang/crates.io-index)",
+ "pkg-config 0.3.7 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -29,8 +29,8 @@ version = "0.46.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "gtypes 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "libc 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "pkg-config 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.7 (registry+https://github.com/rust-lang/crates.io-index)",
+ "pkg-config 0.3.7 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -40,7 +40,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "glib-2-0-sys 0.46.4 (registry+https://github.com/rust-lang/crates.io-index)",
  "gtypes 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "pkg-config 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)",
+ "pkg-config 0.3.7 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -51,14 +51,14 @@ dependencies = [
  "glib-2-0-sys 0.46.4 (registry+https://github.com/rust-lang/crates.io-index)",
  "gobject-2-0-sys 0.46.4 (registry+https://github.com/rust-lang/crates.io-index)",
  "gtypes 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "libc 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.7 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "grust-gio-2-0"
 version = "0.0.1-dev"
 dependencies = [
- "bitflags 0.3.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "bitflags 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "gio-2-0-sys 0.46.4 (registry+https://github.com/rust-lang/crates.io-index)",
  "glib-2-0-sys 0.46.4 (registry+https://github.com/rust-lang/crates.io-index)",
  "gobject-2-0-sys 0.46.4 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -89,16 +89,16 @@ name = "gtypes"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "libc 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.7 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "libc"
-version = "0.2.1"
+version = "0.2.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "pkg-config"
-version = "0.3.6"
+version = "0.3.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 

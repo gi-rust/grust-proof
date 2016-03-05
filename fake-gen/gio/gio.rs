@@ -25,7 +25,6 @@
 extern crate grust;
 
 #[macro_use]
-#[no_link]
 extern crate bitflags;
 
 extern crate gio_2_0_sys as ffi;
@@ -156,7 +155,7 @@ pub mod flags {
         use ffi;
 
         bitflags! {
-            flags Flags: guint {
+            pub flags Flags: ::grust::types::guint {
                 const NONE            = 0,
                 const COPY_WITH_FILE  = 1,
                 const COPY_WHEN_MOVED = 2,
