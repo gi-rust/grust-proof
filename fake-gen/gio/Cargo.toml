@@ -9,7 +9,7 @@ name = "grust_gio_2_0"
 path = "gio.rs"
 
 [dependencies]
-bitflags = "0.3"
+bitflags = "0.5"
 
 [dependencies.glib-2-0-sys]
 git = "https://github.com/gi-rust/glib-sys.git"

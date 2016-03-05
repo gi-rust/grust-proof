@@ -8,7 +8,7 @@ dependencies = [
 
 [[package]]
 name = "bitflags"
-version = "0.3.2"
+version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
@@ -58,7 +58,7 @@ dependencies = [
 name = "grust-gio-2-0"
 version = "0.0.1-dev"
 dependencies = [
- "bitflags 0.3.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "bitflags 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "gio-2-0-sys 0.47.0-dev (git+https://github.com/gi-rust/gio-sys.git)",
  "glib-2-0-sys 0.47.0-dev (git+https://github.com/gi-rust/glib-sys.git)",
  "gobject-2-0-sys 0.47.0-dev (git+https://github.com/gi-rust/gobject-sys.git)",
