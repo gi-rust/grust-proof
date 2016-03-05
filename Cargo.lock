@@ -19,8 +19,8 @@ dependencies = [
  "glib-2-0-sys 0.47.0-dev (git+https://github.com/gi-rust/glib-sys.git)",
  "gobject-2-0-sys 0.47.0-dev (git+https://github.com/gi-rust/gobject-sys.git)",
  "gtypes 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "libc 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "pkg-config 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.7 (registry+https://github.com/rust-lang/crates.io-index)",
+ "pkg-config 0.3.7 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -29,8 +29,8 @@ version = "0.47.0-dev"
 source = "git+https://github.com/gi-rust/glib-sys.git#cd5bf488b32b01cff76da88100ab9c7d2478fe9d"
 dependencies = [
  "gtypes 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "libc 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "pkg-config 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.7 (registry+https://github.com/rust-lang/crates.io-index)",
+ "pkg-config 0.3.7 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -40,7 +40,7 @@ source = "git+https://github.com/gi-rust/gobject-sys.git#dc41c4cfc82158b29eabec1
 dependencies = [
  "glib-2-0-sys 0.47.0-dev (git+https://github.com/gi-rust/glib-sys.git)",
  "gtypes 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "pkg-config 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)",
+ "pkg-config 0.3.7 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -51,7 +51,7 @@ dependencies = [
  "glib-2-0-sys 0.47.0-dev (git+https://github.com/gi-rust/glib-sys.git)",
  "gobject-2-0-sys 0.47.0-dev (git+https://github.com/gi-rust/gobject-sys.git)",
  "gtypes 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "libc 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.7 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -89,16 +89,16 @@ name = "gtypes"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "libc 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.2.7 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "libc"
-version = "0.2.1"
+version = "0.2.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "pkg-config"
-version = "0.3.6"
+version = "0.3.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
